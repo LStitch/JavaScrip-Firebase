@@ -17,6 +17,7 @@ function resetFields(){
     document.getElementById("Input2").value='';
     document.getElementById("Input3").value='';
     document.getElementById("Input4").value='selecciona';
+    document.getElementById("Input5").value='';
 }
 function createR() {
     document.getElementById("Input1").disabled = false;
@@ -25,6 +26,7 @@ function createR() {
     var nombrejuego = document.getElementById("Input2").value;
     var costo = document.getElementById("Input3").value;
     var genero = document.getElementById("Input4").value;
+    var plataforma = document.getElementById("Input5").value;
 
     //validaciones
     if (id.length > 0) {
@@ -34,6 +36,7 @@ function createR() {
             nombrejuego,
             costo,
             genero,
+            plataforma,
         }
 
         //console.log(alumno);
@@ -103,14 +106,16 @@ function printRow(videojuego){
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
         var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
         
         //Agregamos la informacion a cada una de las columnas del registro
         cell1.innerHTML = videojuego.id;
         cell2.innerHTML = videojuego.nombrejuego; 
         cell3.innerHTML = videojuego.costo;
-        cell4.innerHTML = videojuego.genero; 
-        cell5.innerHTML = `<button type="button" class="btn btn-danger" onClick="deleteR(${videojuego.id})">Eliminar</button>`;
-        cell6.innerHTML = '<button type="button" class="btn btn-success" onClick="seekR('+videojuego.id+')">Modificar</button>';
+        cell4.innerHTML = videojuego.genero;
+        cell5.innerHTML = videojuego.plataforma
+        cell6.innerHTML = `<button type="button" class="btn btn-danger" onClick="deleteR(${videojuego.id})">Eliminar</button>`;
+        cell7.innerHTML = '<button type="button" class="btn btn-success" onClick="seekR('+videojuego.id+')">Modificar</button>';
     }
 }
 
@@ -137,6 +142,7 @@ function updateR(videojuego){
         document.getElementById("Input2").value=videojuego.nombrejuego;
         document.getElementById("Input3").value=videojuego.costo;
         document.getElementById("Input4").value=videojuego.genero;
+        document.getElementById("Input5").value=videojuego.plataforma;
     }
 }
 
@@ -144,10 +150,10 @@ function updateR(videojuego){
 //Para consulta de carrera
 function readQ(){
     document.getElementById("Table2").innerHTML='';
-    var c = document.getElementById("Input5").value;
+    var c = document.getElementById("Input6").value;
 
     var ref = firebase.database().ref("Videojuegos");
-    ref.orderByChild("genero").equalTo(c).on("game_added", function(snapshot) {
+    ref.orderByGame("genero").equalTo(c).on("game_added", function(snapshot) {
         printRowQ(snapshot.val());
     });
 
@@ -166,11 +172,13 @@ function printRowQ(videojuego){
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4)
     
     //Agregamos la informacion a cada una de las columnas del registro
     cell1.innerHTML = videojuego.id;
     cell2.innerHTML = videojuego.nombrejuego; 
     cell3.innerHTML = videojuego.costo;
     cell4.innerHTML = videojuego.genero; 
+    cell5.innerHTML = videojuego.plataforma;
    
 }
