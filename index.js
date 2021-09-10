@@ -1,11 +1,12 @@
 const firebaseConfig = {
     apiKey: "AIzaSyDZNXzULyqQ-uJVzReo1ntvqLsYR_GGOlM",
-    authDomain: "videojuegos-d911b.firebaseapp.com",
-    projectId: "videojuegos-d911b",
-    storageBucket: "videojuegos-d911b.appspot.com",
-    messagingSenderId: "336264540844",
-    appId: "1:336264540844:web:4229bdd968a912b9936509",
-    measurementId: "G-VMYENC64S3"
+  authDomain: "videojuegos-d911b.firebaseapp.com",
+  databaseURL: "https://videojuegos-d911b-default-rtdb.firebaseio.com",
+  projectId: "videojuegos-d911b",
+  storageBucket: "videojuegos-d911b.appspot.com",
+  messagingSenderId: "336264540844",
+  appId: "1:336264540844:web:4229bdd968a912b9936509",
+  measurementId: "G-VMYENC64S3"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
